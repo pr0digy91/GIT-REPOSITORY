@@ -1,0 +1,1789 @@
+<!-- saved from url=(0022)http://internet.e-mail -->
+<html>
+<head>
+<title> Veritas System Recovery </title>
+<h1 align="center">Veritas System Recovery</h1>
+
+
+<!-- ********************************************************************************* ********************
+	*	Create a CSS style for the sheet defining your background colour and other 		*
+	*	settings that you want applied on the page. You can also define ordered lists		 *
+	*	or unordered lists with their backgrounds set so that they will show up as 		*
+	*	layers . 										 *
+	 ********************************************************************************* ****************
+
+background-color:"#2F4F4F";
+//-->
+<style type="text/css">
+body
+{
+
+<!--background-color:"#2F4F4F";//-->
+background-color:#600000;
+}
+h1
+{
+color:White;
+text-align:center;
+}
+p
+{
+font-family:"Times New Roman";
+font-size:20px;
+}
+strong
+{
+color:White
+}
+b
+{
+color:White
+}
+</style>
+
+<script>
+var m = new Date();
+var d1 = new Date();
+var y = new Date();
+
+var timer = null
+function start(){
+    var time = new Date()
+    var hours = time.getHours()
+    var minutes = time.getMinutes()
+    minutes=((minutes < 10) ? "0" : "") + minutes
+    var seconds = time.getSeconds()
+    seconds=((seconds < 10) ? "0" : "") + seconds
+    var clock = hours + ":" + minutes + ":" + seconds
+    document.forms[0].display.value = clock
+    timer = setTimeout("start()",1000)
+}
+function techid() {
+	document.getElementById("techst").value = arguments[0];
+};
+
+</script>
+
+
+<!--
+	 ********************************************************************************* ****************
+	*		End of style sheets. Any further style sheets can be added above here.  	*	 	
+	 ********************************************************************************* ****************
+//-->
+
+<script language="javascript" type="text/javascript">
+<!--
+//-------------------------------------------------------------------------------------
+//          DOCUMENTATION TEMPLATE
+//          By: 
+//          
+//      ********************************************************************************      
+//     *     Released under the GNU General Public License                            *
+//     *     This program is free software: you can redistribute it and/or modify     *
+//     *     it under the terms of the GNU General Public License as published by     *
+//     *     the Free Software Foundation, either version 3 of the License, or        *
+//     *     (at your option) any later version.                                      *
+//     *                                                                              *
+//     *     This program is distributed in the hope that it will be useful,          *
+//     *     but WITHOUT ANY WARRANTY; without even the implied warranty of           *
+//     *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the            *
+//     *     GNU General Public License for more details.                             *
+//     *                                                                              *
+//     *     You should have received a copy of the GNU General Public License        *
+//     *     along with this program.  If not, see <http://www.gnu.org/licenses/>.    *
+//      ********************************************************************************
+//
+//-------------------------------------------------------------------------------------
+
+
+
+//******************************************************************************* *************
+//**	All global variables are disclosed here so that they need not be repeated. However  **
+//**	since the customer name might change with every case, it is prudent to have both    **
+//**	the TSE name and customer name to be gathered for every email template.		    **
+//******************************************************************************* *************
+
+	var externalkb = "http://www.veritas.com/docs/";
+
+
+//******************************************************************************* ************
+//				CALCULATE DATE AND TIME
+//******************************************************************************* ************
+
+function timenow()
+{
+
+
+var month=new Array(12);
+month[0]="Jan";
+month[1]="Feb";
+month[2]="Mar";
+month[3]="Apr";
+month[4]="May";
+month[5]="Jun";
+month[6]="Jul";
+month[7]="Aug";
+month[8]="SEP";
+month[9]="Oct";
+month[10]="Nov";
+month[11]="Dec";
+
+
+var time = new Date()
+var hours = time.getHours()
+var minutes = time.getMinutes()
+minutes=((minutes < 10) ? "0" : "") + minutes
+hours=((hours < 10) ? "0" : "") + hours
+
+if(hours>12)
+{
+var hr = hours-12
+var am = " pm"
+}
+else
+{
+var hr = hours
+var am = " am"
+}
+
+
+var clock = hr + ":" + minutes + am
+
+timer = setTimeout("start()",1000)
+
+var date = d1.getDate();
+var month = month[m.getMonth()];
+
+document.forms[0].the_time.value = month+'-'+date+','+' '+clock+' '+'IST';
+
+}
+
+
+
+
+//******************************************************************************* ************
+//			RESET TIME
+//******************************************************************************* ************
+
+function resettime()
+
+{
+
+document.forms[0].the_time.value = '';
+
+}
+
+
+//******************************************************************************* ************
+//			START OF DAY 1 TEMPLATE
+//******************************************************************************* ************
+
+function firstcalltemplate()
+{
+
+	var webex1 = "Webex Session: "
+	var webex2 = "Webex Session Number: "
+	var webex3 = "Application View: Yes "
+	var webex4 = "Application Control: No "
+	var webex5 = "Desktop View: Yes "
+	var webex6 = "Desktop Control: No "
+	var webex8 = "Uploaded Files: "
+	var webex9 = "Downloaded Files: "
+	var firstcallmsg23 = "POA Updated in SFS: Yes"
+	var firstcallmsg24 = "Next Customer Contact: "
+	var firstcallmsgend = "------------------------------------------------------------------"
+	var specialline =
+"******************************************************************"
+
+
+	if(document.forms[0].status.value=="Resolved")
+	{
+	var nxtcontact = "Closing the Case"
+	}
+	else
+	{
+	var nxtcontact = document.forms[0].nxtcontactdate_time.value+' '+document.forms[0].nxtcontactzone.value
+	}
+		
+
+	if(document.forms[0].kb.value=="No")
+		var kbreference = "NA"
+	else
+		var kbreference = externalkb //+document.forms[0].KBarticle.value; //have to edit later.
+		
+
+    
+
+
+	if(document.forms[0].Webex.value=="Yes")
+	{
+		
+		if(document.forms[0].management_solution_check.value=="yes")
+		{
+			document.forms[1].ssrcasenote.value = '\n'+'\t\t\tFIRST CALL TEMPLATE '+'\n\n'+specialline+'\n\n'+'Customer Name: '+document.forms[0].custname.value+'\nCase Number: '+document.forms[0].ssrcaseid.value +'\n'+'Called the Customer on: '+document.forms[0].the_time.value+'\nContact Number: '+document.forms[0].phoneno.value+'\nSecondary Contact Number: '+document.forms[0].phoneno1.value+'\n\n'+firstcallmsgend+'\n\n'+'Environment Details: '+'\n\n'+'Product Name: '+document.forms[0].product_name.value+' '+'Management Solution'+'\nProduct Version: '+document.forms[0].ssrversion.value+'\nNumber of affected Managed Clients: '+document.forms[0].manage_client_affected_no.value+'\nOS on Management Solution: '+document.forms[0].management_OS.value+' '+document.forms[0].manage_server_OS_edition.value+' '+document.forms[0].management_os_sp.value+'\nOS on client Machine: '+document.forms[0].managed_clientOS.value+' '+document.forms[0].manage_client_OS_edition.value+' '+document.forms[0].manage_client_sp.value+' '+document.forms[0].manage_client_update.value+' '+document.forms[0].manage_client_OS_platform.value+'\n\n'+firstcallmsgend+'\n\n'+'Description as Per SalesForce: '+document.forms[0].ssrissue.value+'\n \n'+firstcallmsgend+'\n\n'+'Issue Reported by Customer: '+'\n\n'+document.forms[0].ssrcustomer_report.value+'\n\n'+firstcallmsgend+'\n\n'+'Troubleshooting Steps Performed: '+'\n \n'+document.forms[0].ssrtrouble.value+'\n\n'+firstcallmsgend+'\n\n'+'Summary of Resolution: '+'\n \n'+document.forms[0].resummary.value+'\n\n'+firstcallmsgend+'\n\n'+'What are the Logs collected:  '+'\n'+document.forms[0].logcollect.value+'\n\n'+'Log Review/findings: '+'\n\n'+document.forms [0].logfindings.value+'\n\n'+firstcallmsgend+'\n\n'+webex1+'\n\n'+webex2+document.forms [0].webexno.value+'\n'+webex3+'\n'+webex4+'\n'+webex5+'\n'+webex6+'\n'+webex8+document.forms [0].uploadfiles.value+'\n'+webex9+document.forms[0].downloadfiles.value+'\n\n'+firstcallmsgend+'\n\n'+'KB  Article used: '+kbreference+'\n\n'+'POA Updated in SalesForce: '+'\n'+'Next Customer Contact: '+nxtcontact+'\n \n'+firstcallmsgend+'\n\n'+'Status of the case: '+document.forms[0].status.value+'\n\n'+firstcallmsgend+'\n \n';
+		}
+		
+		else
+		
+		{
+	document.forms[1].ssrcasenote.value = '\n'+'\t\t\tFIRST CALL TEMPLATE '+'\n\n'+specialline+'\n\n'+'Customer Name: '+document.forms[0].custname.value+'\nCase Number: '+document.forms[0].ssrcaseid.value +'\n'+'Called the Customer on: '+document.forms[0].the_time.value+'\nContact Number: '+document.forms[0].phoneno.value+'\nSecondary Contact Number: '+document.forms[0].phoneno1.value+'\n\n'+firstcallmsgend+'\n\n'+'Environment Details: '+'\n\n'+'Product Name: '+document.forms[0].product_name.value+'\nProduct Version: '+document.forms[0].ssrversion.value+'\nOS on client Machine: '+document.forms[0].managed_clientOS.value+' '+document.forms[0].manage_client_OS_edition.value+' '+document.forms[0].manage_client_sp.value+' '+document.forms[0].manage_client_update.value+' '+document.forms[0].manage_client_OS_platform.value+'\n\n'+firstcallmsgend+'\n\n'+'Description as Per SalesForce: '+document.forms[0].ssrissue.value+'\n \n'+firstcallmsgend+'\n\n'+'Issue Reported by Customer: '+'\n\n'+document.forms[0].ssrcustomer_report.value+'\n\n'+firstcallmsgend+'\n\n'+'Troubleshooting Steps Performed: '+'\n \n'+document.forms[0].ssrtrouble.value+'\n\n'+firstcallmsgend+'\n\n'+'Summary of Resolution: '+'\n \n'+document.forms[0].resummary.value+'\n\n'+firstcallmsgend+'\n\n'+'What are the Logs collected:  '+'\n'+document.forms[0].logcollect.value+'\n\n'+'Log Review/findings: '+'\n\n'+document.forms [0].logfindings.value+'\n\n'+firstcallmsgend+'\n\n'+webex1+'\n\n'+webex2+document.forms [0].webexno.value+'\n'+webex3+'\n'+webex4+'\n'+webex5+'\n'+webex6+'\n'+webex8+document.forms [0].uploadfiles.value+'\n'+webex9+document.forms[0].downloadfiles.value+'\n\n'+firstcallmsgend+'\n\n'+'KB  Article used: '+kbreference+'\n\n'+'POA Updated in SalesForce: '+'\n'+'Next Customer Contact: '+nxtcontact+'\n \n'+firstcallmsgend+'\n\n'+'Status of the case: '+document.forms[0].status.value+'\n\n'+firstcallmsgend+'\n \n';
+	
+		}
+		
+	}
+
+	else
+	{
+
+	if(document.forms[0].management_solution_check.value=="yes")
+	{
+	document.forms[1].ssrcasenote.value = '\n'+'\t\t\tFIRST CALL TEMPLATE '+'\n\n'+specialline+'\n\n'+'Customer Name: '+document.forms[0].custname.value+'\nCase Number: '+document.forms[0].ssrcaseid.value +'\n'+'Called the Customer on: '+document.forms[0].the_time.value+'\nContact Number: '+document.forms[0].phoneno.value+'\nSecondary Contact Number: '+document.forms[0].phoneno1.value+'\n\n'+firstcallmsgend+'\n\n'+'Environment Details: '+'\n\n'+'Product Name: '+document.forms[0].product_name.value+' '+'Management Solution'+'\nProduct Version: '+document.forms[0].ssrversion.value+'\nNumber of affected Managed Clients: '+document.forms[0].manage_client_affected_no.value+'\nOS on Management Solution: '+document.forms[0].management_OS.value+' '+document.forms[0].manage_server_OS_edition.value+' '+document.forms[0].management_os_sp.value+'\nOS on client Machine: '+document.forms[0].managed_clientOS.value+' '+document.forms[0].manage_client_OS_edition.value+' '+document.forms[0].manage_client_sp.value+' '+document.forms[0].manage_client_update.value+' '+document.forms[0].manage_client_OS_platform.value+'\n\n'+firstcallmsgend+'\n\n'+'Description as Per SalesForce: '+document.forms[0].ssrissue.value+'\n \n'+firstcallmsgend+'\n\n'+'Issue Reported by Customer: '+'\n\n'+document.forms[0].ssrcustomer_report.value+'\n\n'+firstcallmsgend+'\n\n'+'Troubleshooting Steps Performed: '+'\n \n'+document.forms[0].ssrtrouble.value+'\n\n'+firstcallmsgend+'\n\n'+'Summary of Resolution: '+'\n \n'+document.forms[0].resummary.value+'\n\n'+firstcallmsgend+'\n\n'+'What are the Logs collected:  '+'\n'+document.forms[0].logcollect.value+'\n\n'+'Log Review/findings: '+'\n\n'+document.forms [0].logfindings.value+'\n\n'+firstcallmsgend+'\n\n'+webex1+'Webex Session Not Taken'+'\n\n'+firstcallmsgend+'\n\n'+'KB  Article used: '+kbreference+'\n\n'+'POA Updated in SalesForce: '+'\n'+'Next Customer Contact: '+nxtcontact+'\n \n'+firstcallmsgend+'\n\n'+'Status of the case: '+document.forms[0].status.value+'\n\n'+firstcallmsgend+'\n \n';
+	
+	}
+	
+	else{
+		
+		document.forms[1].ssrcasenote.value = '\n'+'\t\t\tFIRST CALL TEMPLATE '+'\n\n'+specialline+'\n\n'+'Customer Name: '+document.forms[0].custname.value+'\nCase Number: '+document.forms[0].ssrcaseid.value +'\n'+'Called the Customer on: '+document.forms[0].the_time.value+'\nContact Number: '+document.forms[0].phoneno.value+'\nSecondary Contact Number: '+document.forms[0].phoneno1.value+'\n\n'+firstcallmsgend+'\n\n'+'Environment Details: '+'\n\n'+'Product Name: '+document.forms[0].product_name.value+'\nProduct Version: '+document.forms[0].ssrversion.value+'\nOS on client Machine: '+document.forms[0].managed_clientOS.value+' '+document.forms[0].manage_client_OS_edition.value+' '+document.forms[0].manage_client_sp.value+' '+document.forms[0].manage_client_update.value+' '+document.forms[0].manage_client_OS_platform.value+'\n\n'+firstcallmsgend+'\n\n'+'Description as Per SalesForce: '+document.forms[0].ssrissue.value+'\n \n'+firstcallmsgend+'\n\n'+'Issue Reported by Customer: '+'\n\n'+document.forms[0].ssrcustomer_report.value+'\n\n'+firstcallmsgend+'\n\n'+'Troubleshooting Steps Performed: '+'\n \n'+document.forms[0].ssrtrouble.value+'\n\n'+firstcallmsgend+'\n\n'+'Summary of Resolution: '+'\n \n'+document.forms[0].resummary.value+'\n\n'+firstcallmsgend+'\n\n'+'What are the Logs collected:  '+'\n'+document.forms[0].logcollect.value+'\n\n'+'Log Review/findings: '+'\n\n'+document.forms [0].logfindings.value+'\n\n'+firstcallmsgend+'\n\n'+webex1+'Webex Session Not Taken'+'\n\n'+firstcallmsgend+'\n\n'+'KB  Article used: '+kbreference+'\n\n'+'POA Updated in SalesForce: '+'\n'+'Next Customer Contact: '+nxtcontact+'\n \n'+firstcallmsgend+'\n\n'+'Status of the case: '+document.forms[0].status.value+'\n\n'+firstcallmsgend+'\n \n';
+		
+		}
+
+	}
+
+
+}
+
+//******************************************************************************* ************
+//			END OF DAY 1 TEMPLATE
+//******************************************************************************* ************
+
+
+
+
+
+
+
+
+//******************************************************************************* ************
+//			START OF DAY 2 TEMPLATE
+//******************************************************************************* ************
+
+function lastcalltemplate()
+{
+
+
+	var webex1 = "Webex Session: "
+	var webex2 = "Webex Session Number: "
+	var webex3 = "Application View: Yes "
+	var webex4 = "Application Control: No "
+	var webex5 = "Desktop View: Yes "
+	var webex6 = "Desktop Control: No "
+	var webex8 = "Uploaded Files: "
+	var webex9 = "Downloaded Files: "
+	var firstcallmsg23 = "POA Updated in SFS: Yes"
+	var firstcallmsg24 = "Next Customer Contact: "
+	var firstcallmsgend = "------------------------------------------------------------------"
+
+
+	if(document.forms[0].status.value=="Resolved")
+	{
+	var nxtcontact = "Closing the Case"
+	}
+	else
+	{
+	var nxtcontact = document.forms[0].nxtcontactdate.value+' '+document.forms [0].nxtcontacttime.value+' '+document.forms[0].nxtcontactzone.value
+	}
+
+
+
+	if(document.forms[0].kb.value=="No")
+		var kbreference = "NA";
+	else
+		var kbreference = externalkb+document.forms[0].KBarticle.value;
+
+
+
+
+	if(document.forms[0].Webex.value=="Yes")
+	{
+
+	document.forms[1].ssrcasenote.value = '\n'+'Case Number: '+document.forms[0].ssrcaseid.value +'\n'+'Called the Customer at: '+document.forms[0].the_time.value+'\nContact Number: '+document.forms [0].phoneno.value+'\n\n'+firstcallmsgend+'\n\n'+'Troubleshooting Steps Performed: '+'\n\n'+document.forms [0].ssrtrouble.value+'\n\n'+firstcallmsgend+'\n\n'+'Summary of Resolution: '+'\n\n'+document.forms [0].resummary.value+'\n\n'+firstcallmsgend+'\n\n'+'What are the Logs collected: '+'\n'+document.forms [0].logcollect.value+'\n\n'+'Log Review/findings: '+'\n\n'+document.forms[0].logfindings.value+'\n \n'+firstcallmsgend+'\n\n'+webex1+'\n\n'+webex2+document.forms[0].webexno.value +'\n'+webex3+'\n'+webex4+'\n'+webex5+'\n'+webex6+'\n'+webex8+document.forms[0].uploadfiles.value +'\n'+webex9+document.forms[0].downloadfiles.value+'\n\n'+firstcallmsgend+'\n\n'+'KB Article used:  '+kbreference+'\n\n'+'POA Updated in SFS: '+'\n'+'Next Customer Contact: '+nxtcontact+'\n \n'+firstcallmsgend+'\n\n'+'Status of the case: '+document.forms[0].status.value+'\n\n'+firstcallmsgend+'\n \n';
+
+	}
+
+	else
+	{
+
+	document.forms[1].ssrcasenote.value = '\n'+'Case Number: '+document.forms[0].ssrcaseid.value +'\n'+'Called the Customer at: '+document.forms[0].the_time.value+'\nContact Number: '+document.forms [0].phoneno.value+'\n\n'+firstcallmsgend+'\n\n'+'Troubleshooting Steps Performed: '+'\n\n'+document.forms [0].ssrtrouble.value+'\n\n'+firstcallmsgend+'\n\n'+'Summary of Resolution: '+'\n\n'+document.forms [0].resummary.value+'\n\n'+firstcallmsgend+'\n\n'+'What are the Logs collected: '+'\n'+document.forms [0].logcollect.value+'\n\n'+'Log Review/findings: '+'\n\n'+document.forms[0].logfindings.value+'\n \n'+firstcallmsgend+'\n\n'+webex1+'Webex Session Not Taken'+'\n\n'+firstcallmsgend+'\n\n'+'KB Article used:  '+kbreference+'\n\n'+'POA Updated in SFS: '+'\n'+'Next Customer Contact: '+nxtcontact+'\n \n'+firstcallmsgend+'\n\n'+'Status of the case: '+document.forms[0].status.value+'\n\n'+firstcallmsgend+'\n \n';
+
+	}
+
+}
+
+//******************************************************************************* ************
+//			END OF DAY 2 TEMPLATE
+//******************************************************************************* ************
+
+
+
+
+
+
+
+
+//******************************************************************************* ************
+//			START OF VOICEMAIL TEMPLATE
+//******************************************************************************* ************
+
+function voicemailtemplate()
+{
+	var call = "Unable to reach the customer."
+	var voice1 = "Left voicemail";
+	var voice2 = ", sending chaser.";
+
+
+
+	
+	document.forms[1].ssrcasenote.value = call+document.forms[0].the_time.value+'\n \n'+voice1+document.forms[0].phoneno.value+voice2;
+}
+
+//******************************************************************************* ************
+//			END OF VOICEMAIL TEMPLATE
+//******************************************************************************* ************
+
+
+
+
+
+
+
+
+//******************************************************************************* ************
+//			START OF POA TEMPLATE
+//******************************************************************************* ************
+
+function add_poa()
+{
+	var poa1 = "Plan Of Action:\n===============\n"
+	var poa2 = "\nLast step performed: \n\nNext step to perform: \n\nNext Customer Contact  Information\n-------------------------------------------\n";
+	var poa3 = "Callback Date: "
+	var poa4 = "\nCallback Time: "
+	var poa5 = "\nTime Zone: (Customer time zone)"
+	var poa6 = "\n-------------------------------------------\n"
+
+
+
+
+	document.forms[1].ssrcasenote.value = poa1+poa2+poa3+document.forms [0].nxtcontactdate.value+poa4+document.forms[0].nxtcontacttime.value+poa5+document.forms [0].nxtcontactzone.value+poa6;
+
+}
+
+//******************************************************************************* ************
+//			END OF POA TEMPLATE
+//******************************************************************************* ************
+
+
+
+
+
+
+
+
+//******************************************************************************* ************
+//			START OF CASE HANDOFF TEMPLATE
+//******************************************************************************* ************
+
+function handoff()
+{
+	var handoff1 = "CASE HANDOFF TEMPLATE:\n======================"
+	var handoff2 = "Case ID: "
+	var handoff3 = "Date of Call: "
+	var handoff4 = "Preferred Call Back Time: "
+	var handoff5 = "Contact Number: "
+	var handoff6 = "Alternate Contact Number: "
+	var handoff7 = "Reason for Handoff: "
+	var handoff8 = "Suggested alternates to customer: "
+
+
+	
+	document.forms[1].ssrcasenote.value = handoff1+'\n\n'+handoff2+document.forms [0].custname.value+'\n'+handoff3+document.forms[0].phoneno.value +'\n'+handoff4+'\n'+handoff5+'\n'+handoff6+'\n'+handoff7+'\n'+handoff8+'\n';
+}
+
+//******************************************************************************* ************
+//			END OF CASE HANDOFF TEMPLATE
+//******************************************************************************* ************
+
+
+
+
+
+
+
+
+//******************************************************************************* ************
+//			START OF CHASER 1 TEMPLATE
+//******************************************************************************* ************
+
+function Chaser1()
+
+{
+
+	var tsename = prompt("Please type your name as you would like it to appear for email  communication", "Type your name here");
+	var Voicemail1 = "Hi ";
+	var Voicemail2 = "Thank you for contacting Symantec Corporation. My name is ";
+	var Voicemail3 = " and I am the assigned technician for this case. I attempted to contact you  today through phone (";
+	var Voicemail31 = ") regarding your case number: ";
+	var Voicemail4 = ", but was unsuccessful in reaching you.";
+	var Voicemail5 = "Please let me know the time and phone number that I can reach you to continue  assisting with the issue. My working hours are between ";
+	var timezone = prompt("Enter your working hours with the Time zone as you would like it to  appear", "08:00 hrs to 17:00 hrs EST");
+	var Voicemail6 = " if you'd like to contact me. Looking forward to work with you.";
+
+	var thanks = "Thanks for using Symantec Support Services!";
+	var regards = "Regards, ";
+	var signature1 = "Symantec Technical Support  \nSymantec Corporation  \nhttp://www.symantec.com/techsupp/ \n\nYour response to this email will be added to your current case,  and I will be notified.\nFor General Enterprise Web-based support, please go to:  http://www.symantec.com/techsupp/enterprise/ \nFor the latest virus information,please go to:  http://securityresponse.symantec.com/ \nThank you for using Symantec software.";
+
+
+	document.forms[1].ssrcasenote.value = Voicemail1+document.forms[0].custname.value+','+'\n \n'+Voicemail2+tsename+Voicemail3+document.forms[0].phoneno.value+Voicemail31+document.forms [0].ssrcaseid.value+Voicemail4+'\n\n'+Voicemail5+timezone+Voicemail6+'\n\n'+thanks+'\n\n'+regards +'\n'+tsename+'\n'+signature1;
+
+}
+
+//******************************************************************************* ************
+//			END OF CHASER 1 TEMPLATE
+//******************************************************************************* ************
+
+
+
+
+
+
+
+
+//******************************************************************************* ************
+//			START OF CHASER 2 TEMPLATE
+//******************************************************************************* ************
+
+function Chaser2()
+
+{
+
+	var tsename = prompt("Please type your name as you would like it to appear for email  communication", "Type your name here");
+	var Voicemail11 = "Hi ";
+	var Voicemail21 = "Thank you for contacting Symantec Corporation. My name is ";
+	var Voicemail31 = " and I am the assigned technician for this case. I attempted to contact you  today through phone (";
+	var Voicemail311 = ") regarding your case number: ";
+	var Voicemail41 = ", but was unsuccessful in reaching you. Since I have been unable to contact  you for the past 2 days, I am not able to finalize the status of the issue. \n\nAt Symantec, our goal is to  provide a quick and accurate solution for your issue. I understand you may be busy, but please take a  moment to reply to this message and let me know if there is anything further that I can do to exceed your  expectations.";
+	var Voicemail51 = "Please let me know the time and phone number that I can reach you to continue  assisting with the issue. My working hours are between ";
+	var timezone = prompt("Enter your working hours with the Time zone as you would like it to  appear", "08:00 hrs to 17:00 hrs EST");
+	var Voicemail61 = " if you'd like to contact me. Looking forward to work with you.";
+
+	var thanks = "Thanks for using Symantec Support Services!";
+	var regards = "Regards, ";
+	var signature1 = "Symantec Technical Support  \nSymantec Corporation  \nhttp://www.symantec.com/techsupp/ \n\nYour response to this email will be added to your current case,  and I will be notified.\nFor General Enterprise Web-based support, please go to:  http://www.symantec.com/techsupp/enterprise/ \nFor the latest virus information,please go to:  http://securityresponse.symantec.com/ \nThank you for using Symantec software.";
+
+
+	document.forms[1].ssrcasenote.value = Voicemail11+document.forms[0].custname.value+','+'\n \n'+Voicemail21+tsename+Voicemail31+document.forms[0].phoneno.value+Voicemail311+document.forms [0].ssrcaseid.value+Voicemail41+'\n\n'+Voicemail51+timezone+Voicemail61+'\n\n'+thanks+'\n\n'+regards +'\n'+tsename+'\n'+signature1;
+
+} 
+
+//******************************************************************************* ************
+//			END OF CHASER 2 TEMPLATE
+//******************************************************************************* ************
+
+
+
+
+
+
+
+
+//******************************************************************************* ************
+//			START OF CHASER 3 TEMPLATE
+//******************************************************************************* ************
+
+function Chaser3()
+{
+	var tsename = prompt("Please type your name as you would like it to appear for email  communication", "Type your name here");
+
+	var chaser1 = "Hi ";
+	var chaser2 = ", \n\nWe tried to contact you though phone (";
+
+	var chaser21 = ") and via email couple of times. Unfortunately, we were unable to reach you, at  the specified number; as well as through email. I tried to contact you again today, but was unable to reach  you.\n\nPlease let us know if you do have an alternate contact number to reach you; by the close of  business tomorrow, for us to work on this case.\n\nWe shall await your response until close of business  tomorrow, case will be closed if there is no response. Please be assured the closing process will not affect  our ability to continue working on this issue. If you continue to experience the same problem, you may open  a new case cross-referencing the old case. Please find below a brief of the issue for your reference.\n \nIssue Id: ";
+	var chaser3 = "\n\nIssue Details: ";
+	var chaser4 = "\n\nWork Summary: \n\n";
+	var chaser5 = "\n\nIf you would like to work on this case right away, the following information/logs  will help us expedite the solution to the issue.\n\nPlease do let me know if you have any further questions.  \n\nIn our endeavor to provide Excellent Service we request you to let us know how we are doing apart from  filling in the survey. If you want to share your experience regarding this case you may also email your  comments to my supervisor, Shalini Chrislla at: Shalini_Chrislla@symantec.com.";
+
+	var thanks = "\n\nThanks for using Symantec Support Services!";
+	var regards = "Regards, ";
+	var signature1 = "Symantec Technical Support  \nSymantec Corporation  \nhttp://www.symantec.com/techsupp/ \n\nYour response to this email will be added to your current case,  and I will be notified.\nFor General Enterprise Web-based support, please go to:  http://www.symantec.com/techsupp/enterprise/ \nFor the latest virus information,please go to:  http://securityresponse.symantec.com/ \nThank you for using Symantec software.";
+
+	
+	document.forms[1].ssrcasenote.value = chaser1+document.forms[0].custname.value +chaser2+document.forms[0].phoneno.value+chaser21+document.forms[0].ssrcaseid.value +chaser3+document.forms[0].ssrissue.value+chaser4+document.forms[0].ssrtrouble.value+chaser5+thanks +'\n\n'+regards+'\n'+tsename+'\n'+signature1;
+} 
+
+//******************************************************************************* ************
+//			END OF CHASER 3 TEMPLATE
+//******************************************************************************* ************
+
+
+
+
+
+
+
+
+//******************************************************************************* ************
+//			START OF CLOSURE EMAIL TEMPLATE
+//******************************************************************************* ************
+
+function Closureemail()
+{
+
+	var tsename = prompt("Please type your name as you would like it to appear for email  communication", "Type your name here");
+	
+	var resolutionmesg1 = "Hi ";
+	var resolutionmesg2 = "It was my pleasure to work with you to resolve the issue reported in Case  #";
+	var resolutionmesg3 = ". Below is a summary of the key points, for your records. ";
+	var resolutionmesg4 =  "-	Please be assured the closing process will not affect our ability to  continue working the case. If you continue to experience the same issue, you may open a new case cross- referencing the old case."; 
+
+	var resolutionmesg5 = "ISSUE: ";
+
+	var resolutionmesg7 = "ENVIRONMENT/CONDITIONS:";
+	var resolutionmesg8 = "Max. no. of SE: ";
+	var resolutionmesg81 = "No. of Affected SE: ";
+	var resolutionmesg9 = "No. of SEM: ";
+	var resolutionmesg10 = "OS on SEM: ";
+	var resolutionmesg11 = "OS on SE: ";
+	var resolutionmesg12 = "Product & Version: ";
+	var resolutionmesg13 = "Database: ";
+	var resolutionmesg14 = "TROUBLESHOOTING STEPS: ";
+	var resolutionmesg15 = "SOLUTION/WORKAROUND: "
+	var resolutionmesg16 = "REFERENCE: ";
+	var resolutionmesg17 = "Regards,";
+	var resolutionmesg18 = "Symantec Enterprise Support";
+	var resolutionmesg19 = "We value your feedback"; 
+	var resolutionmesg20 = "Your feedback is extremely important to us! In our endeavor to provide  excellent service we ask that you let us know how we are doing. If you haven’t recently received a survey  from Symantec, watch your email. A survey ending with @ccsurvey.com is coming your way.  Please use this  survey to tell us about your recent support experience.";
+	var resolutionmesg21 = "If you prefer, you may also email your comments to my supervisor, Shalini  Chrislla at shalini_chrislla@symantec.com.";
+	var resolutionmesg22 = "Additional Support Options";
+	var resolutionmesg23 = "We encourage you to visit our SymHelp Technical Article  (http://www.symantec.com/docs/TECH170752) where you can download and use a diagnostic and self-help  utility that can help you assess your environment and aid you in solving common issues. You also have  access to support videos, technical articles, downloads, and other support tools from the site.";
+	var resolutionmesg24 = "If there is anything else we can do to assist you, please let us know.  Your  response to this email will be added to your current case, and I will be notified.";
+	var thanks = "We value you and your business with Symantec.";
+	var regards = "Regards, ";
+	var signature1 = "Symantec Technical Support  \nSymantec Corporation  \nhttp://www.symantec.com/techsupp/ \n\nYour response to this email will be added to your current case,  and I will be notified.\nFor General Enterprise Web-based support, please go to:  http://www.symantec.com/techsupp/enterprise/ \nFor the latest virus information,please go to:  http://securityresponse.symantec.com/ \nThank you for using Symantec software.";
+
+
+	if(document.forms[0].kb.value=="No")
+		var kbreference = "NA";
+	else
+		var kbreference = externalkb+document.forms[0].KBarticle.value;
+
+		
+	document.forms[1].ssrcasenote.value = resolutionmesg1+document.forms[0].custname.value +','+'\n\n'+resolutionmesg2+document.forms[0].ssrcaseid.value+resolutionmesg3+'\n \n'+resolutionmesg5+document.forms[0].ssrissue.value+'\n \n'+resolutionmesg7+'\n'+resolutionmesg9+document.forms[0].sepmanager.value +"\n"+resolutionmesg8+document.forms[0].sepclient.value+'\n'+resolutionmesg81+document.forms [0].sepclientaff.value+'\n'+'OS on SEM : '+document.forms[0].sepmOS.value+' '+document.forms [0].sepmsp.value+' '+document.forms[0].sepmplatform.value+"\n"+resolutionmesg11+document.forms [0].sepclientOS.value+' '+document.forms[0].sepsp.value+' '+document.forms[0].sepplatform.value +'\n'+resolutionmesg12+document.forms[0].sepversion.value+' '+document.forms[0].entsbe.value +'\n'+resolutionmesg13+document.forms[0].sepreport.value+' '+document.forms[0].dbsp.value +'\n'+'\n'+resolutionmesg14+'\n\n'+document.forms[0].ssrtrouble.value+'\n\n'+resolutionmesg15+'\n \n'+document.forms[0].resummary.value+'\n\n'+resolutionmesg16+kbreference+'\n\n'+resolutionmesg4+'\n \n'+resolutionmesg19+'\n\n'+resolutionmesg20+'\n\n'+resolutionmesg21+'\n\n'+resolutionmesg22+'\n \n'+resolutionmesg23+'\n\n'+resolutionmesg24+'\n\n'+resolutionmesg17+'\n\n'+tsename+'\n'+signature1;
+
+}
+
+//******************************************************************************* ************
+//			END OF CLOSURE EMAIL TEMPLATE
+//******************************************************************************* ************
+
+
+
+
+
+
+
+
+//******************************************************************************* ************
+//				START OF ESCALATION TEMPLATE
+//******************************************************************************* ************
+
+function escalation()
+{
+
+	var esc1 = "CONCENTRIX TECHNICAL ESCALATION:\n================================\n \n\n";
+	var esc2 = "Case Information:\n=================\n\nCase Number: ";
+	var esc30 = "\n\nCustomer name: ";
+	var esc31 = "\n\nCustomer Contact Number: ";
+	var esc32 = "\n\nCallback Time Frame: ";
+	var esc33 = "\n\nTime Zone: ";
+	var escend = "---------------------------------------------------------------------------\n\n";
+	var escend1 = "---------------------------------------------------------------------------\n";
+	var esc4 = "Issue Stated: \n==================\n\nDescription as Per SFS: ";
+	var esc41 = "\n\nReason for Escalation: (Mention why this case is being escalated. Is it due to  Technical Difficulties/ Based on DM Request / Customer requesting for Advance Team) \n\nIs Customer able  to reproduce the Issue? \n\n";
+	var esc5 = "Environment Details: \n====================\n\nNo. of SEM: ";
+	var esc51 = "\n\nNo. of sites: \n\nNo. of SEM each site: \n\nOS on Which SEM Installed: ";
+	var esc52 = "\n\nIs the OS dedicated to the SEM: Yes/No\n\nTotal No of SE clients: ";
+	var esc53 = "\n\nNo. of clients reporting to each site: \n\nOS on SE: ";
+	var esc54 = "\n\nLive update schedule: (If this is a live update issue mention when was it last  working or if any changes were made in the network)\n\nIs there a proxy used: Yes/No \n\nName of the  proxy: \n\nProduct Version: ";
+	var esc55 = "\n\nDatabase: ";
+	var esc56 = "\n\nHow many computers are affected: ";
+	var esc57 = "\n\nAffected OS and Service Pack: \n\nUAC status: Enabled/Disabled\n\nComponents  Installed: \n\nClient or Server/SEM: \n\nDid disabling the affected component resolve the issue? \n\nClient's  LiveUpdate Path: LUA/SEM/External Liveupdate Server\n\n3rd Party Applications: N/A\n\n";
+	
+	var esc6 = "Database: \n=========\n\nEmbedded or SQL: ";
+	var esc61 = "\n\nIf SQL, Mention the exact version and SP: ";
+	var esc62 = "\n\nIs the SQL on the same machine of the SEM: Yes/No\n\nIs the SQL dedicated to  the SEM: Yes/No\n\n";
+
+	var esc7 = "Replication: \n============\n\nReplication configured: Yes/No\n\nIf Yes: Describe  which site is replicating to the other site\n\nReplication schedule:\n\nIs the replication working: Yes/No \n \nIf no: Mention when was it last working or did it stop working after a particular event occurred. \n\nIs the  replication happening over the LAN or WAN\n\nBandwidth if over the WAN: \n\nExample:- \nPrimary sites in  Mumbai \n172.17.144.20 MSYMAVAP01\n172.17.144.14 MSYMAVAP03\n\nSecondary sites in Kolkata \n172.16.144.17 KSYMAVAP01\n169.254.0.150 KSYMAVAP02\n\nDatabase:\n172.16.144.21 SQL DB in  Kolkata site \n172.16.144.19 SQL DB in Mumbai site. \n\n";
+
+	var esc8 = "Troubleshooting Steps Performed: \n================================\n\n";
+	var esc9 = "Logs Collected: \n===============\n\nIf SEM side issue: \n1. Symhelp:\n2. Finest  logs: Ensure to collect and upload the .zip separately file which is generated after running the collect.cmd\n \nIf client side issue:\n1. Collect WPP logging by reproducing the issue\n2. Collect symhelp\nIf any  application is causing an issue: Collect procmon by reproducing the issue and mentioned details on the  application works and if the customer can share the copy for internal testing.\n\n";
+
+	var esc10 = "Log finding: \n============\n\nName of the Log Analyzed: \nMention the Error  found in the Log: \n\n";
+	var esc11 = "KB Articles used: ";
+	var esc12 = "Current Status of Customer's Issue:\n=================================== \n\n(Please provide a summary on the current situation\nExample: Customer called for Live update issue  however in the course of troubleshooting Ran Management Server to reconfigure the database and right now  customer is unable to complete the Management Server Wizard since the SQL User Name and Password is  not accepted by SEM)\n\n";
+
+	var esc13 = "CHECK LIST:\n===========\n\nCase Number: ";
+	var esc14 = "\n\nProduct Version Checked with customer: YES\n\nIf the customer migrated to the  newer version during the troubleshooting: NO\n\nCheck case and ensure it describes the real issue the  customer is facing: YES\n\nAffected OS on the affected machine(s) is correctly logged in SFS: YES\n \nCustomer contact details / Primary Contact (name, telephone, and email) are correct in SFS: YES\n \nChecked collected logs are attached to the case as the Evidence: YES\n\nWebEx sessions took place:  YES\n\nWebEx recordings attached to the case: NO\n\nLogs Collected: YES\n\nLogs Attached to the case:  YES\n\nStatus Changed 39 To Handoff Pending: YES\n\n";
+
+
+
+	if(document.forms[0].kb.value=="No")
+		var kbreference = "NA";
+	else
+		var kbreference = externalkb+document.forms[0].KBarticle.value;
+
+
+
+
+
+
+	if(document.forms[0].sepreport.value=="NA")
+	{
+		var emb = "NA";
+		var sp = "NA";
+	}
+	else if(document.forms[0].sepreport.value=="Embedded")
+	{
+		var emb = "Embedded";
+		var sp = "NA";
+	}
+	else 
+	{
+		var emb = "SQL";
+		var sp = document.forms[0].sepreport.value+' '+document.forms[0].dbsp.value;
+	}
+
+
+
+
+	document.forms[1].ssrcasenote.value = esc1+esc2+document.forms[0].ssrcaseid.value +esc30+document.forms[0].custname.value+esc31+document.forms[0].phoneno.value +esc32+document.forms[0].nxtcontacttime.value+esc33+document.forms[0].nxtcontactzone.value+"\n \n"+escend+esc4+document.forms[0].ssrissue.value+esc41+escend+esc5+document.forms [0].sepmanager.value+esc51+document.forms[0].sepmOS.value+' '+document.forms[0].sepmsp.value+'  '+document.forms[0].sepmplatform.value+esc52+document.forms[0].sepclient.value+esc53+document.forms [0].sepclientOS.value+' '+document.forms[0].sepsp.value+' '+document.forms[0].sepplatform.value +esc54+document.forms[0].sepversion.value+' '+document.forms[0].entsbe.value+esc55+document.forms [0].sepreport.value+' '+document.forms[0].dbsp.value+esc56+document.forms[0].sepclientaff.value +esc57+escend+esc6+emb+esc61+sp+esc62+escend+esc7+escend+esc8+document.forms [0].ssrtrouble.value+"\n\n"+escend+esc9+escend+esc10+escend+esc11+kbreference+'\n\n'+escend +esc12+escend+esc13+document.forms[0].ssrcaseid.value+esc14+escend1
+
+}
+
+//******************************************************************************* ************
+//				END OF ESCALATION TEMPLATE
+//******************************************************************************* ************
+
+
+
+
+
+
+
+
+//******************************************************************************* ************
+//				START OF SRL TEMPLATE
+//******************************************************************************* ************
+
+function srl()
+{
+	var srl1 = "SECURITY INCIDENT ESCALATION TEMPLATE: \n======================================\n\n\n";
+	var srl2 = "CASE DATA\n---------\n\nTSE Email Address: \n\nCase Number: "
+	var srl3 = "\n\nEntitlement: Basic/Essential\n\nRegion: APAC/EMEA/NAM\n\nWill this case be  following the sun?: Yes/No\n\n\n\n";
+	var srl4 = "SEVERITY/PRIORITY\n-----------------\n\nCustomer Impact: \n\nSeverity:  High/Medium/Low\n\nReason for severity: \n\n\n\n\n\nDESCRIPTION\n-----------\n\nAbstract: ";
+	var srl5 = "\n\nProduct: SE\n\nSEP Version: ";
+	var srl6 = "\n\nIs the product functional?: Yes\n\nVirus Definition Date: \n\nAffected OS and  Service Pack: ";
+	var srl61 = "\n\n32 or 64 bit OS?: ";
+	var srl62 = "\n\nPrimary Request: \n\nSecondary Request: \n\nAdditional Requests: \n\nHow many  computers are affected?: ";
+	var srl7 = "\n\nHow many computers in the environment?: ";
+	var srl8 = "\n\nThreats being detected: \n\nTracking number(s): \n\nDid the customers submit the  files to Threat Expert?: Yes/No\n\nDetection method: \n\nLocation of Logs: \n\n\n\n\n\nFrontline agent's  summary of troubleshooting steps and preliminary log review:\n\n";
+
+	document.forms[1].ssrcasenote.value = srl1+srl2+document.forms[0].ssrcaseid.value +srl3+srl4+document.forms[0].ssrissue.value+srl5+document.forms[0].sepversion.value+' '+document.forms [0].entsbe.value+srl6+document.forms[0].sepclientOS.value+' '+document.forms[0].sepsp.value +srl61+document.forms[0].sepplatform.value+srl62+document.forms[0].sepclientaff.value +srl7+document.forms[0].sepclient.value+srl8+document.forms[0].ssrtrouble.value+'\n\n'
+
+	var srl = prompt("Send an email to the below email address","Global-Tech Support-Security  Response Liaisons");
+
+}
+
+//******************************************************************************* ************
+//			END OF SRL TEMPLATE
+//******************************************************************************* ************
+
+
+
+
+
+
+
+
+//******************************************************************************* ************
+//******************************************************************************* ************
+//************      Function to set a cookie and then to retreive or write data into it    **
+//************      The last function will actually recover data from the cookie to all    **
+//************      fields in the forms. This will actually only store data upto 4KB and   **
+//************      anything more will discard the cookie without truncating any info.	   **
+//******************************************************************************* ************
+//******************************************************************************* ************
+
+
+
+//********************************************************
+//**	 Use this function to retrieve a cookie.	**
+//********************************************************
+function getCookie(name){
+var cname = name + "=";               
+var dc = document.cookie;             
+    if (dc.length > 0) {              
+    begin = dc.indexOf(cname);       
+        if (begin != -1) {           
+        begin += cname.length;       
+        end = dc.indexOf(";", begin);
+            if (end == -1) end = dc.length;
+            return unescape(dc.substring(begin, end));
+        } 
+    }
+return null;
+}
+
+
+//********************************************************
+//**	 Use this function to save a cookie.		**
+//********************************************************
+
+function setCookie(name, value, expires) 
+{
+document.cookie = name + "=" + escape(value) + "; path=/" +
+((expires == null) ? "" : "; expires=" + expires.toGMTString());
+}
+
+
+
+//********************************************************
+//**	 Use this function to delete a cookie.		**
+//********************************************************
+
+function delCookie(name) 
+{
+document.cookie = name + "=; expires=Thu, 01-Jan-70 00:00:01 GMT" +  "; path=/";
+}
+
+
+
+
+//********************************************************
+//**	 Function to save form element's value.		**
+//********************************************************
+
+function setValue(element) 
+{
+setCookie(element.name, element.value, exp);
+}
+
+var exp = new Date();                                   
+exp.setTime(exp.getTime() + (1000 * 60 * 60 * 24 * 31));
+
+
+
+//******************************************************************************* *****************
+//**	End of cookie retrieve function from here. You only need to copy from here to add  	**
+//**	in to your script. Only make sure that you add the onBlur= getValue(this)		**
+//**	Also make sure you add the correct form and value for the forms in the last		**
+//**	function. getValue(document.<form_name>.<element>);					**
+//******************************************************************************* *****************
+//-->
+
+
+
+//******************************************************************************* *****************
+
+
+
+function change_titlecase(changecase)
+{
+	var str = new String(changecase);
+	str = str.slice(0,1);
+	changecase= str.toUpperCase()+changecase.slice(1);
+}
+
+
+function change_case()
+{
+	var str = new String(document.forms[0].ssrissue.value);
+	str = str.slice(0,1);
+	document.forms[0].ssrissue.value= str.toUpperCase()+document.forms[0].ssrissue.value.slice(1);
+}
+
+
+function add_action_result()
+{
+	var action = "\nACTION: \nRESULT: \n\n";
+	document.forms[0].ssrtrouble.value += action;
+}
+
+
+function add_environment_details()
+{
+	var environment = "Environment Details :\n=====================\n";
+
+	document.forms[1].ssrcasenote.value = environment+'No. of SEM: '+document.forms [0].sepmanager.value+'\n'+'Max. no. of SE: '+document.forms[0].sepclient.value+'\n'+'No. of Affected SE:  '+document.forms[0].sepclientaff.value+'\nOS on SEM: '+document.forms[0].sepmOS.value+'  '+document.forms[0].sepmsp.value+' '+document.forms[0].sepmplatform.value+'\n'+'OS on SE:  '+document.forms[0].sepclientOS.value+' '+document.forms[0].sepsp.value+' '+document.forms [0].sepplatform.value+'\n'+'Product Version: '+document.forms[0].sepversion.value+' '+document.forms [0].entsbe.value+'\n'+'Database: '+document.forms[0].sepreport.value+' '+document.forms[0].dbsp.value;
+
+}
+
+
+
+
+
+
+</script>
+</head>
+
+
+
+<!-- <body bgcolor= "BLACK" > //-->
+
+
+<BODY bgcolor= "#600000" >
+
+
+<!--
+////////////////////////////////////////////////////////////////////////////////////////////////
+********************************************************************************* ***************
+********************************************************************************* ***************
+************************	FORM 1		 ************************************************
+********************************************************************************* ***************
+********************************************************************************* ***************
+////////////////////////////////////////////////////////////////////////////////////////////////
+//-->
+
+
+
+
+<form name="form1" method="post"  enctype="text/plain" >
+
+
+
+
+
+
+
+<!--
+********************************************************************************* *************
+********************************************************************************* *************
+********************************************************************************* *************
+*************            CASE NO, TIME CAPTURE, CUST NAME AND PHONE NO		 **************
+********************************************************************************* *************
+********************************************************************************* *************
+********************************************************************************* *************
+//-->
+
+
+<table BORDER =1 CELLPADDING=5 width="1024">
+<tr>
+
+
+	<td>
+	<B>Case ID:</B> <input type="number" name ="ssrcaseid" title="Enter Case Number"  onblur="setValue(this)"> 
+	</td>
+	
+	<td>
+		<input type="button" value=" Capture Current Time" name="environment"  language="javascript" onClick="timenow();"/>
+		<INPUT TYPE="text" NAME="the_time" SIZE="25" title="Current Time" readonly>
+		<input type="button" value=" Reset Time" name="environment" language="javascript"  onclick="resettime();"/>
+	</td>
+
+
+</tr>
+</table>
+
+
+<table BORDER =1 CELLPADDING=5 width="1024">
+<tr>
+
+
+	<td>
+		<B>Customer Name:</B> <input TYPE="text" name ="custname" title="Enter Customer's  Name" SIZE="30" > 
+	</td>
+	
+	<td>
+		<B>Phone No:</B> <input TYPE="number" name ="phoneno" title="Enter Customer's Phone  No" SIZE="25" >
+	</td>
+    
+    <td>
+		<B>Secondary Phone No:</B> <input TYPE="number" name ="phoneno1" title="Enter Customer's Phone  No" SIZE="25" >
+	</td>
+	
+	<td>
+		<B>Customer Time Zone:</B> <INPUT TYPE="text" NAME="nxtcontactzone" title="Enter  Customer's Timezone" SIZE="10">
+	</td>
+
+
+</tr>
+</table>
+
+
+
+
+
+
+<!--
+********************************************************************************* *************
+********************************************************************************* *************
+********************************************************************************* *************
+***************		Collecting Environment Details 				 **************
+********************************************************************************* *************
+********************************************************************************* *************
+********************************************************************************* *************
+//-->
+
+<table width="1024" BORDER =1 CELLPADDING=5>
+<tr>
+	<td>
+	<br>
+		<strong>Product Name:</strong>
+	<select name="product_name" onBlur="setValue(this)">
+	<option value="NA" selected>[Select Product]</option>
+	<option value="Veritas System Recovery 16 Basic">Veritas System Recovery 16 Basic Edition</option>
+	<option value="Veritas System Recovery 16 Desktop">Veritas System Recovery 16 Desktop Edition</option>
+	<option value="Veritas System Recovery 16 Small Business Server">Veritas System Recovery 16 Small Business Server Edition</option>	
+	<option value="Veritas System Recovery 16 Server">Veritas System Recovery 16 Server Edition</option>   
+	<option value="Veritas System Recovery 16 Virtual">Veritas System Recovery 16 Virtual Edition</option>  
+    <option value="Veritas System Recovery 16 Linux">Veritas System Recovery 16 Linux Edition</option> 
+	<option disabled>----------------------------------------</option>
+	<option value="Symantec System Recovery 2013 R2 Basic">Symantec System Recovery 2013 R2 Basic Edition</option>
+	<option value="Symantec System Recovery 2013 R2 Desktop">Symantec System Recovery 2013 R2 Desktop Edition</option>
+    <option value="Symantec System Recovery 2013 R2 Small Business Server">Symantec System Recovery 2013 R2 Small Business Server Edition</option>
+    <option value="Symantec System Recovery 2013 R2 Server">Symantec System Recovery 2013 R2 Server Edition</option>
+    <option value="Symantec System Recovery 2013 R2 Virtual">Symantec System Recovery 2013 R2 Virtual Edition</option>
+    <option value="Symantec System Recovery 2013 R2 Linux">Symantec System Recovery 2013 R2 Linux Edition</option>
+	<option disabled>----------------------------------------</option>
+    <option value="Symantec System Recovery 2013 Basic">Symantec System Recovery 2013 Basic Edition</option>
+	<option value="Symantec System Recovery 2013 Desktop">Symantec System Recovery 2013 Desktop Edition</option>
+    <option value="Symantec System Recovery 2013 Small Business Server">Symantec System Recovery 2013 Small Business Server Edition</option>
+    <option value="Symantec System Recovery 2013 Server">Symantec System Recovery 2013 Server Edition</option>
+    <option value="Symantec System Recovery 2013 Virtual">Symantec System Recovery 2013 Virtual Edition</option>
+    <option value="Symantec System Recovery 2013 Linux">Symantec System Recovery 2013 Linux Edition</option>
+    <option disabled>----------------------------------------</option>
+        <option value="Symantec System Recovery 2011 Basic">Symantec System Recovery 2011 Basic Edition</option>
+	<option value="Symantec System Recovery 2011 Desktop">Symantec System Recovery 2011 Desktop Edition</option>
+    <option value="Symantec System Recovery 2011 Small Business Server">Symantec System Recovery 2011 Small Business Server Edition</option>
+    <option value="Symantec System Recovery 2011 Server">Symantec System Recovery 2011 Server Edition</option>
+    <option value="Symantec System Recovery 2011 Virtual">Symantec System Recovery 2011 Virtual Edition</option>
+    <option value="Symantec System Recovery 2011 Linux">Symantec System Recovery 2011 Linux Edition</option>
+	</select>
+	
+	<br>
+
+	<strong>Management Solution</strong>
+	<input type="radio" name="management_solution_check" value="yes"><strong>Yes</strong>
+	<input name="management_solution_check" type="radio" value="no" checked><strong>No</strong>
+    
+	<br>
+
+	<strong>No of affected Managed clients:</strong>	
+	<input name="manage_client_affected_no" value="NA" size="6" maxlength="6" title="Enter the no of Clients  affected" onFocus='this.value=""' onBlur="setValue(this)">
+
+	</td>
+    
+    <td>
+	<b>Product Version: </b>
+	<select name="ssrversion" onBlur="setValue(this)">
+
+	<option value='NA' selected>[Choose Version]</option>
+	<option value='16.0.1.56016'>16.0.1.56016</option>
+    <option value='16.0.0.55884'>16.0.0.55884</option>
+    <option value='11.1.6'>11.1.6</option>
+    <option value='11.1.5'>11.1.5</option>
+    <option value='11.1.4'>11.1.4</option>
+    <option value='11.1.3'>11.1.3</option>
+    <option value='11.1.2'>11.1.2</option>
+    <option value='11.1.1'>11.1.1</option>
+    <option value='11.1.0'>11.1.0</option>
+    <option value='11.0.2'>11.0.2</option>
+    <option value='11.0.1'>11.0.1</option>
+    <option value='11.0.0'>11.0.0</option>
+    <option value='10.0.3'>10.0.3</option>
+    <option value='10.0.2'>10.0.2</option>
+    <option value='10.0.1'>10.0.1</option>
+    <option value='10.0.0'>10.0.0</option>
+    <option disabled>-------------</option>	
+	</select>
+    
+	</td>
+    
+</tr>
+
+</table>
+
+<table BORDER =1 CELLPADDING=5 width="1024">
+<tr>
+
+	<td>
+	<strong>OS on Management Solution:</strong>
+	<select name="management_OS" onBlur="setValue(this)">
+	<option value="NA" selected>[Select OS]</option>
+	<option value="Windows Server 2012 R2">Windows Server 2012 R2</option>  
+	<option value="Windows Server 2008 R2">Windows Server 2008 R2</option>   
+	</select>
+    
+    <br>
+    <strong>OS Edition:</strong>	
+	<select name="manage_server_OS_edition" onBlur="setValue(this)">
+	<option value="NA" selected>[Select OS Edition]
+	<option value="Web">Web</option>
+    <option value="Standard">Standard</option>
+    <option value="Enterprise">Enterprise</option>
+    <option value="Datacenter">Datacenter</option>
+    <option value="Essentials">Essentials</option>
+    <option value="Itanium">Itanium</option>
+    <option value="Foundation">Foundation</option>
+    <option value="HPC">HPC</option> 
+    </select>
+  
+    <strong>SP:</strong>	
+	<input name="management_os_sp" size="6" maxlength="6" onBlur="setValue(this)">
+	</td>
+    
+</tr>
+</table>
+
+<table BORDER =1 CELLPADDING=5 width="1024">
+<tr>
+<td>
+	<strong>OS on Managed client:</strong>
+	<select name="managed_clientOS" onBlur="setValue(this)">
+	<option value="NA" selected>[Select OS]
+    <option disabled>Desktop OS</option>
+	<option value="Windows XP">Windows XP</option>
+	<option value="Windows Vista">Windows Vista</option> 
+	<option value="Windows 7">Windows 7</option>
+	<option value="Windows 8">Windows 8</option>
+	<option value="Windows 8.1">Windows 8.1</option>
+	<option value="Windows 10">Windows 10</option>
+	<option disabled>----------------------------------------</option>
+    <option disabled>Server OS</option>
+	<option value="Windows Server 2000">Windows Server 2000</option>
+	<option value="Windows Server 2003">Windows Server 2003</option>
+	<option value="Windows Server 2003 R2">Windows Server 2003 R2</option>
+	<option value="Windows Server 2008">Windows Server 2008</option>   
+	<option value="Windows Server 2008 R2">Windows Server 2008 R2</option>
+	<option value="Windows Server 2011 SBS">Windows Small Business Server 2011</option>
+    <option value="Windows MultiPoint Server 2011">Windows MultiPoint Server 2011</option>
+    <option value="Windows Home Server 2011">Windows Home Server 2011</option>
+    <option value="Windows MultiPoint Server 2010">Windows MultiPoint Server 2010</option>
+	<option value="Windows Server 2012">Windows Server 2012</option>   
+	<option value="Windows Server 2012 R2">Windows Server 2012 R2</option>
+    <option value="Windows Server 2016">Windows Server 2016</option>
+	<option disabled>----------------------------------------</option>
+    <option disabled>Linux Server OS</option>
+    <option value="Red Hat Enterprise Linux 5.0 Server">Red Hat Enterprise Linux 5.0 Server</option>
+    <option value="Red Hat Enterprise Linux 6.0 Server">Red Hat Enterprise Linux 6.0 Server</option>
+    <option value="SUSE Linux Enterprise Server 10">SUSE Linux Enterprise Server 10</option>
+    <option value="SUSE Linux Enterprise Server 11">SUSE Linux Enterprise Server 11</option>    </select>
+    
+	<br>
+    <strong>OS Edition:</strong>	
+	<select name="manage_client_OS_edition" onBlur="setValue(this)">
+	<option value="NA" selected>[Select OS Edition]
+    <option disabled>For Windows XP</option>
+    <option value="Starter">Starter</option>
+    <option value="Home">Home</option>
+    <option value="Professional">Professional</option>
+    <option disabled>----------------------------------------</option>
+    <option disabled>For Windows Vista</option>
+    <option value="Starter">Starter</option>
+    <option value="Home Basic">Home Basic</option>
+    <option value="Home Premium">Home Premium</option>
+    <option value="Business">Business</option>
+    <option value="Enterprise">Enterprise</option>
+    <option value="Ultimate">Ultimate</option>
+    <option disabled>----------------------------------------</option>
+    <option disabled>For Windows 7</option>
+    <option value="Starter">Starter</option>
+    <option value="Home Basic">Home Basic</option>
+    <option value="Home Premium">Home Premium</option>
+    <option value="Professional">Professional</option>
+    <option value="Enterprise">Enterprise</option>
+    <option value="Ultimate">Ultimate</option>
+    <option disabled>----------------------------------------</option>
+    <option disabled>For Windows 8</option>
+    <option value="Pro">Pro</option>
+    <option value="Enterprise">Enterprise</option>
+    <option value="OEM">OEM</option>
+    <option disabled>----------------------------------------</option>
+    <option disabled>For Windows 8.1</option>
+    <option value="Pro">Pro</option>
+    <option value="Enterprise">Enterprise</option>
+    <option disabled>----------------------------------------</option>
+    <option disabled>For Windows 10</option>
+    <option value="Home">Home</option>
+    <option value="Pro">Pro</option>
+    <option value="Pro Education">Pro Education</option>
+    <option value="Enterprise">Enterprise</option>
+    <option value="Enterprise LTSB">Enterprise LTSB</option>
+    <option value="Education">Education</option>
+    <option value="Mobile">Mobile</option>
+    <option value="Mobile Enterprise">Mobile Enterprise</option>
+    <option value="IoT Core">IoT Core</option>
+    <option value="IoT Enterprise">IoT Enterprise</option>
+    <option value="IoT Mobile Enterprise">IoT Mobile Enterprise</option>
+    <option disabled>----------------------------------------</option>
+    <option disabled>For Windows Server 2000</option> 
+    <option value="Advanced Server">Advanced Server</option>
+    <option value="Datacenter Server">Datacenter Server</option>
+    <option disabled>----------------------------------------</option>
+    <option disabled>For Windows Server 2003</option> 
+    <option value="Small Business Server">Small Business Server</option>
+    <option value="Web Edition">Web Edition</option>
+    <option value="Standard Edition">Standard Edition</option>
+    <option value="Enterprise Edition">Enterprise Edition</option>
+    <option value="Datacenter Edition">Datacenter Edition</option>
+    <option value="Storage Server">Storage Server</option>
+    <option disabled>----------------------------------------</option>
+    <option disabled>For Windows Server 2003 R2</option> 
+    <option value="Small Business Server">Small Business Server</option>
+    <option value="Web Edition">Web Edition</option>
+    <option value="Standard Edition">Standard Edition</option>
+    <option value="Enterprise Edition">Enterprise Edition</option>
+    <option value="Datacenter Edition">Datacenter Edition</option>
+    <option value="Storage Server">Storage Server</option>
+    <option value="Home Server">Home Server</option>
+    <option value="Compute Cluster Server 2003 (CCS)">Compute Cluster Server 2003 (CCS)</option>
+    <option disabled>----------------------------------------</option>
+    <option disabled>For Windows Server 2008</option> 
+    <option value="Small Business Server">Small Business Server</option>
+    <option value="Web Server">Web Server</option>
+    <option value="Standard Edition">Standard Edition</option>
+    <option value="Enterprise Edition">Enterprise Edition</option>
+    <option value="Datacenter Edition">Datacenter Edition</option>
+    <option value="Storage Server">Storage Server</option>
+    <option value="Itanium-based Systems">Itanium-based Systems</option>
+    <option value="Foundation">Foundation</option>
+    <option value="Essential Business Server">Essential Business Server</option>
+    <option value="HPC Server">HPC Server</option>
+    <option disabled>----------------------------------------</option>
+    <option disabled>For Windows Server 2008 R2</option> 
+    <option value="Web Server">Web Server</option>
+    <option value="Standard Edition">Standard Edition</option>
+    <option value="Enterprise Edition">Enterprise Edition</option>
+    <option value="Datacenter Edition">Datacenter Edition</option>
+    <option value="Storage Server">Storage Server</option>
+    <option value="Itanium-based Systems">Itanium-based Systems</option>
+    <option value="Foundation">Foundation</option>
+    <option value="HPC Server">HPC Server</option>
+    <option disabled>----------------------------------------</option>
+    <option disabled>For Windows Server 2012</option>
+    <option value="Foundation">Foundation</option>
+    <option value="Essentials">Essentials</option>
+    <option value="Standard">Standard</option>
+    <option value="Datacenter">Datacenter</option>
+    <option value="MultiPoint Server">MultiPoint Server</option>
+    <option disabled>----------------------------------------</option>
+    <option disabled>For Windows Server 2012 R2</option>
+    <option value="Foundation">Foundation</option>
+    <option value="Essentials">Essentials</option>
+    <option value="Standard">Standard</option>
+    <option value="Datacenter">Datacenter</option>
+    <option disabled>----------------------------------------</option>
+    <option disabled>For Windows Server 2016</option>
+    <option value="Essentials">Essentials</option>
+    <option value="Standard">Standard</option>
+    <option value="Datacenter">Datacenter</option>
+    </select>
+    
+	<strong>SP:</strong>	
+	<input name="manage_client_sp" size="6" maxlength="6" onBlur="setValue(this)">
+    
+    <strong>Update:</strong>	
+	<input name="manage_client_update" size="6" maxlength="6" title="If RHEL, enter the update level" onBlur="setValue(this)">
+	<br>
+	<strong>Platform: </strong>
+	<select name="manage_client_OS_platform" onBlur="setValue(this);">
+	<option value="" selected>NA</option>
+	<option value="32-bit">32-bit</option>
+	<option value="64-bit">64-bit</option>
+	</select>
+	</td>
+	
+</tr>
+</table>
+
+<!--
+********************************************************************************* *************
+********************************************************************************* *************
+********************	ISSUE REPORTED BY THE CUSTOMER	 **************************************
+********************************************************************************* *************
+********************************************************************************* *************
+//-->
+
+
+<table BORDER =1 CELLPADDING=5 width="1024">
+<tr>
+
+	<td>
+
+	<B>Issue Stated:</B> <input name="ssrissue" title="Enter the abstract of the Issue"  type="text" size="123" maxlength="250" onBlur="change_case();setValue(this);">
+
+	</td>
+
+</tr>
+
+</table>
+
+<table BORDER =1 CELLPADDING=5 width="1024">
+
+<tr>
+	<td>
+		<br>
+		<strong>Issue Reported by the Customer: </strong>
+		<br>
+		<br>
+	</td>
+
+	<td>
+		<textarea rows="5" cols="88" name="ssrcustomer_report" onBlur="setValue (this)"></textarea>
+				
+	</td>
+		
+</tr>
+</table>
+
+
+<!--
+********************************************************************************* ***************
+********************************************************************************* ***************
+************************	THE TROUBLESHOOTING WINDOW	 ********************************	
+********************************************************************************* ***************
+********************************************************************************* ***************
+//-->
+
+<table BORDER =1 CELLPADDING=5 width="1024">
+<tr>
+	<td>
+		<strong>Troubleshooting Steps:</strong>
+		<input type="button" value=" Action/Result" name="environment" language="javascript"  onclick="add_action_result();"/>
+		<input value="Reset All" type="reset" name="Reset"> 
+        
+       	<br>
+	</td>
+</tr>
+
+
+<tr>
+	<td>
+		<textarea rows="15" cols="119" name="ssrtrouble" onBlur="setValue(this)"></textarea>
+				
+	</td>
+		
+
+</tr>
+
+</table>
+
+
+
+<!--
+********************************************************************************* ***************
+********************************************************************************* ***************
+************************	RESOLUTION SUMMARY	 ****************************************	
+********************************************************************************* ***************
+********************************************************************************* ***************
+//-->
+
+
+<table BORDER =1 CELLPADDING=5 width="1024">
+<tr>
+	<td>
+		<strong>Resolution Summary:</strong>
+
+	<br>
+	</td>
+</tr>
+
+
+<tr>
+	<td>
+		<textarea rows="8" cols="119" name="resummary" onBlur="setValue(this)"></textarea>
+				
+	</td>
+		
+
+</tr>
+</Table>
+
+
+
+<!--
+********************************************************************************* ***************
+********************************************************************************* ***************
+***********************	Webex, KB, Case Status and Next Contact		 ************************
+********************************************************************************* ***************
+********************************************************************************* ***************
+//-->
+
+
+<table BORDER =1 CELLPADDING=5 width="1024">
+<tr>
+
+	<td>
+    
+    <!--Author: T00rk, link :"https://github.com/T00rk/bootstrap-material-datetimepicker"-->
+       
+	<!--	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<!--	<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" />
+
+		<link rel="stylesheet"
+			  href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.10/css/bootstrap-material-design.min.css"/>-->
+		<link rel="stylesheet"
+			  href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.10/css/ripples.min.css"/>
+
+		<link rel="stylesheet" href="https://cdn.rawgit.com/pr0digy91/GIT-REPOSITORY/Changes/bootstrap-material-datetimepicker.css" />
+		<link href='http://fonts.googleapis.com/css?family=Roboto:400,500' rel='stylesheet' type='text/css'>
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+		<script src="https://code.jquery.com/jquery-1.12.3.min.js" integrity="sha256-aaODHAgvwQW1bFOGXMeX+pC4PZIPsvn2h1sArYOhgXQ=" crossorigin="anonymous"></script>
+		<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.10/js/ripples.min.js"></script>
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.10/js/material.min.js"></script>
+       <script type="text/javascript" src="https://rawgit.com/FezVrasta/bootstrap-material-design/master/dist/js/material.min.js"></script>
+		<script type="text/javascript" src="http://momentjs.com/downloads/moment-with-locales.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-datetimepicker/2.7.1/js/bootstrap-material-datetimepicker.min.js"></script>
+
+		<style>
+			body 
+			{
+				padding-top: 70px;
+				font-family: 'Roboto', sans-serif;
+			}
+			h2 
+			{
+				padding: 0 20px 10px 20px;
+				font-size: 20px;
+				font-weight: 400;
+			}
+			.form-control-wrapper 
+			{
+				margin: 10px 20px;
+			}
+			code 
+			{
+				padding: 10px;
+				background: #eee!important;
+				display: block;
+				color: #000;
+			}
+			code > p 
+			{
+				font-weight: bold;
+				color: #000;
+				font-size: 1.5em;
+			}
+			@media(max-width: 300px)
+			{
+				.well { margin : 0}
+			}
+			
+		</style>
+		<script>
+			(function(i, s, o, g, r, a, m) {
+				i['GoogleAnalyticsObject'] = r;
+				i[r] = i[r] || function() {
+					(i[r].q = i[r].q || []).push(arguments)
+				}, i[r].l = 1 * new Date();
+				a = s.createElement(o),
+					m = s.getElementsByTagName(o)[0];
+				a.async = 1;
+				a.src = g;
+				m.parentNode.insertBefore(a, m)
+			})(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+			ga('create', 'UA-60343429-1', 'auto');
+			ga('send', 'pageview');
+		</script>	
+						<input type="text" name="nxtcontactdate_time" id="date-format"><strong> Select Date and Time</strong>
+                        
+                        <br>
+                        <br>
+							
+                         <input type="button" value="RESET" name="reset" onClick='nxtcontactdate_time.value=""'>  
+		
+		<script type="text/javascript">
+		$(document).ready(function()
+		{
+			$('#date').bootstrapMaterialDatePicker
+			({
+				time: false,
+				clearButton: true
+			});
+
+			$('#time').bootstrapMaterialDatePicker
+			({
+				date: false,
+				shortTime: false,
+				format: 'HH:mm'
+			});
+
+			$('#date-format').bootstrapMaterialDatePicker
+			({
+				format: 'dddd DD MMMM YYYY - HH:mm'
+			});
+			$('#date-fr').bootstrapMaterialDatePicker
+			({
+				format: 'DD/MM/YYYY HH:mm',
+				lang: 'fr',
+				weekStart: 1, 
+				cancelText : 'ANNULER',
+				nowButton : true,
+				switchOnClick : true
+			});
+
+			$('#date-end').bootstrapMaterialDatePicker
+			({
+				weekStart: 0, format: 'DD/MM/YYYY HH:mm'
+			});
+			$('#date-start').bootstrapMaterialDatePicker
+			({
+				weekStart: 0, format: 'DD/MM/YYYY HH:mm', shortTime : true
+			}).on('change', function(e, date)
+			{
+				$('#date-end').bootstrapMaterialDatePicker('setMinDate', date);
+			});
+
+			$('#min-date').bootstrapMaterialDatePicker({ format : 'DD/MM/YYYY HH:mm', minDate : new Date() });
+
+			$.material.init()
+		});
+		</script>
+
+	
+
+<br>
+<br>
+  
+	</td>
+	<td>
+		<strong>Webex Session:</strong>
+		<select name="Webex" onBlur="setValue(this);">
+		<option value="Yes" selected> Yes </option>
+		<option value="No">No</option>
+		</select>
+
+		<strong>Webex Session No:</strong><INPUT TYPE="number" title="Enter Webex Session No"  NAME="webexno" SIZE="15">
+
+	</td>
+</tr>
+<tr>
+
+	<td>
+
+		<strong>Uploaded Files: (Webex)</strong>
+		<INPUT TYPE="text" NAME="uploadfiles" value="NA" title="Files Uploaded to the Customer  through Webex" onFocus='this.value=""' SIZE="35">
+
+
+	</td>
+    
+    <td>
+
+		<strong>KB Used:</strong>
+		<select name="kb" onBlur="setValue(this);">
+		<option value="Yes" selected> Yes </option>
+		<option value="No">No</option>
+		</select>
+
+	</td>
+</tr>
+
+<tr>
+
+	<td>
+		<div style="position:relative;">
+		<strong>Case Status:</strong>
+		<select name="status" onBlur="setValue(this);">
+		<option value="NA" selected> NA </option>
+		<option value="Customer Action Required">Customer Action Required</option>
+		<option value="Veritas Action Required">Veritas Action Required</option>
+        <option value="Customer and Veritas Action Required">Customer and Veritas Action Required</option>
+		<option value="Third-Party Action Required">Third-Party Action Required</option>
+        <option value="Veritas and Third-Party Action Required">Veritas and Third-Party Action Required</option>
+        <option value="Resolved" selected>Resolved</option>
+		</select>
+		</div>
+		
+	</td>
+        
+    <td>
+    <strong>Downloaded Files: (Webex)</strong>
+		<INPUT TYPE="text" NAME="downloadfiles" value="NA" title="Files downloaded from the  Customer through Webex" onFocus='this.value=""' SIZE="35">
+    </td>
+    
+</tr>
+
+</table>
+
+
+
+<table BORDER =1 CELLPADDING=5 width="1024">
+<tr>
+
+	<td>
+		<strong>Logs Collected:</strong>
+
+	</td>
+	<td>
+		<strong>Logs Findings:</strong>
+	</td>
+
+</tr>
+
+<tr>
+	<td>
+		<textarea rows="8" cols="30" name="logcollect" onBlur="setValue(this)"></textarea>
+
+
+	</td>
+
+	<td>
+		<textarea rows="8" cols="87" name="logfindings" onBlur="setValue(this)"></textarea>
+	</td>
+
+</tr>
+
+</table>
+
+
+</form>
+
+
+
+
+
+<!--
+////////////////////////////////////////////////////////////////////////////////////////////////
+********************************************************************************* ***************
+********************************************************************************* ***************
+************************	END OF FORM 1	 ************************************************
+********************************************************************************* ***************
+********************************************************************************* ***************
+////////////////////////////////////////////////////////////////////////////////////////////////
+//-->
+
+
+
+<br>
+<br>
+
+
+<!--
+////////////////////////////////////////////////////////////////////////////////////////////////
+********************************************************************************* ***************
+********************************************************************************* ***************
+************************	FORM 2		 ************************************************
+********************************************************************************* ***************
+////////////////////////////////////////////////////////////////////////////////////////////////
+//-->
+
+
+<form name="form2" method="post"  enctype="text/plain" >
+
+
+
+<!--
+////////////////////////////////////////////////////////////////////////////////////////////////
+********************************************************************************* ***************
+********************************************************************************* ***************
+************************	TEMPLATE BUTTONS		 ********************************
+********************************************************************************* ***************
+////////////////////////////////////////////////////////////////////////////////////////////////
+//-->
+
+
+
+
+<table BORDER =1 CELLPADDING=5 width="1024">
+<tr>
+	<td>
+		<strong>Choose the following Templates:</strong>
+		<br>
+		<br>
+		<input onClick="firstcalltemplate()" type="button" value="1st Interaction">
+		<input onClick="lastcalltemplate()" type="button" value="Subsequent Interaction">
+		<input onClick="voicemailtemplate()" type="button" value=" Voicemail ">
+		<input onClick="add_environment_details()" type="button" value="Environment Details">
+		<input onClick="add_poa();" type="button" value=" Plan Of Action ">
+		<input onClick="handoff()" type="button" value=" Case Handoff ">
+
+		<br>
+		<br>
+
+		<input onClick="Chaser1()" type="button" value="Chaser 1 Email">
+		<input onClick="Chaser2()" type="button" value="Chaser 2 Email">
+		<input onClick="Chaser3()" type="button" value="Chaser 3 Email">
+		<input onClick="Closureemail()" type="button" value="Closure Email">
+
+		<br>
+		<br>
+
+		<input onClick="escalation()" type="button" value="Escalation Template">
+		<input onClick="srl()" type="button" value="SRL Template">
+
+		<br>
+
+	</td>
+</tr>
+
+
+</table>
+
+
+
+
+
+
+
+<!--
+////////////////////////////////////////////////////////////////////////////////////////////////
+********************************************************************************* ***************
+***********************		TEMPLATE RESULT WINDOW		 ********************************
+********************************************************************************* ***************
+////////////////////////////////////////////////////////////////////////////////////////////////
+//-->
+
+
+<table border="1" cellpadding="5" width="1024" >
+<tr>
+	<td>
+		<br>
+		<strong>Template Result Window: </strong>
+		<br><br><textarea rows="25" cols="119" spellcheck="true" name="ssrcasenote"  onblur="setValue(this)"></textarea> 
+		<br>
+		<p>
+
+		<input type = reset value="Reset Template Window" name=Reset>
+		<br>
+		</p>
+		
+	</td>
+	
+</tr>
+
+
+</table>
+
+
+<table border="1" cellpadding="5" width="1024" >
+<tr>
+<td>
+
+<strong>Authored By: <br><br>Garunya Narendran<br>TSE<br>Veritas System Recovery</strong>
+
+</td>
+<td><strong>License:<br><br><a href="https://www.gnu.org/licenses/gpl-faq.en.html" target="_blank" style="text-decoration:none"><b>GNU GPL</b></a></strong></td>
+</tr>
+</table>
+
+
+</form>
+
+
+
+<!--
+////////////////////////////////////////////////////////////////////////////////////////////////
+********************************************************************************* ***************
+********************************************************************************* ***************
+************************	END OF FORM 2	 ************************************************
+********************************************************************************* ***************
+////////////////////////////////////////////////////////////////////////////////////////////////
+//-->
+
+
+
+
+
+	<!--
+	+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ +++++++++++++++++++
+	+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ +++++++++++++++++++
+	++	The floating window is generated here. this code will make the window static on	   ++
+	++	the page using the <div> and <layer> tag so that the box remains fixated to the   ++
+	++	co-ordinates in the page oblivious to the scrolling.				   ++
+	+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ +++++++++++++++++++
+	+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ +++++++++++++++++++
+	//-->
+	<script>
+		if (!document.layers)
+		document.write('<div id="divStayTopLeft" style="position:absolute">')
+	</script>
+
+	
+	
+<script type="text/javascript">
+	 /******************************************************************************** ***********
+	 ****		Floating Menuscript - Puts up the script on the lower left corner	****
+	  ********************************************************************************* **********/
+	
+	//Enter "frombottom" or "fromtop" for fixing your position of reference.
+	
+	var verticalpos="frombottom"
+	
+	if(!document.layers)
+	document.write('</div>') 
+	
+	function JSFX_FloatTopDiv() 
+	{ 
+		 //******************************************************************************* *********
+		//** The value of startX will position the window on the right or left side of the 	**
+		//** screen. Higher the value, further on the right will the menu appear. The  		 **
+		//** value of startY will determine the position of the box on the screen. If you 	**
+		//** have a large number of menu to be filled in the script, change the value of 	**
+		//** startY to accomodate the menu on screen.Do not change any values thereafter.	**
+		 //******************************************************************************* *********
+		var startX = 1050,
+		startY = 450;
+		var ns = (navigator.appName.indexOf("Netscape") != -1);
+		var d = document;
+		function ml(id)
+		{
+			var el=d.getElementById?d.getElementById(id):d.all?d.all[id]:d.layers[id];
+			if(d.layers)el.style=el;
+
+			el.sP=function(x,y){this.style.left=x;this.style.top=y;};
+			el.x = startX;
+			if (verticalpos=="fromtop")
+			el.y = startY;
+			else
+			{
+				el.y = ns ? pageYOffset + innerHeight : document.body.scrollTop +  document.body.clientHeight;
+				el.y -= startY;
+			}
+			return el;
+		}
+		window.stayTopLeft=function()
+		{
+			if (verticalpos=="fromtop")
+			{
+				var pY = ns ? pageYOffset : document.body.scrollTop;
+				ftlObj.y += (pY + startY - ftlObj.y)/8;
+			}
+			else
+			{
+				var pY = ns ? pageYOffset + innerHeight : document.body.scrollTop +  document.body.clientHeight;
+				ftlObj.y += (pY - startY - ftlObj.y)/8;
+			}
+			ftlObj.sP(ftlObj.x, ftlObj.y);
+			setTimeout("stayTopLeft()", 10);
+		}
+		ftlObj = ml("divStayTopLeft");
+		stayTopLeft();
+	} 
+
+<!-- The following command is used to invoke the floating menuscript. DO NOT CHANGE or EDIT THIS-->
+JSFX_FloatTopDiv(); 
+
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ++++++++++++++++
+
+/******************************************************************************** ***************
+//////////////////////////////////////DO NOT EDIT BELOW THIS LINE.\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+********************************************************************************* ***************/
+
+
+
+</script>
+</body>
+
+</html> 
