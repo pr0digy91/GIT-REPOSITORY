@@ -1,0 +1,159 @@
+SYSTEM RECOVERY (SR) - Windows
+
+ 
+ 
+?     ADDITIONAL QUESTIONS AND SUPPORT
+
+    Quick Tip:
+
+        If an issue is specific to SMP (ex: install of SMP failing), DO NOT refer the customer to Symantec Support. 
+        Troubleshoot the case as normal and engage help via SME/Support Forum as needed. 
+        If normal troubleshooting does not help, Symantec Support can be engaged via a formal agreement between Veritas & Symantec Support. 
+        For this to happen, the case needs to be advanced to backline.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        Collect SymHelp logs from the affected machine(s) – for Windows clients only. 
+        Collect logs for Linux clients:
+            See: https://www.veritas.com/support/en_US/article.TECH160280. 
+        Collect logs for Management Solution:
+            See: https://support.symantec.com/en_US/article.HOWTO44354.html.
+        If Universal Serial Buss (USB), Removable Disk Technology (RDX) or Network Attached Storage (NAS) are being used as backup destination; collect all relevant hardware details about these devices.
+
+        Are the affected machines physical or virtual? (if virtual, confirm if Hyper-V or ESXi and check version).
+        Is this a Storage Area Network (SAN)/Cluster environment?
+            If yes, collect all relevant details of configuration.
+
+                                                                                               (back to top)
+
+ 
+     TROUBLESHOOTING COMMONLY KNOWN ISSUES
+
+    A. INSTALLATION SUPPORT 
+
+        For any SR Windows installation problem, refer to the following:
+            Install log: \ProgramData\Symantec\Symantec System Recovery\Logs\SSRINST.HTM
+            MSI log: \Users\user_name\AppData\Local\Temp\MSIxxxxx.LOG
+                A verbose Microsoft Installer (MSI) log may be required, see: https://support.microsoft.com/en-us/kb/223300?wa=wsignin1.0.
+                Refer to Windows Installer Error Messages, see: https://msdn.microsoft.com/en-us/library/aa372835%28v=vs.85%29.aspx?f=255&MSPPError=-2147217396.
+        For any SR Linux installation problem, refer to /var/log/symsr/InstallUninstall.log and check Linux version using the following commands:
+            Red Hat: cat /etc/redhat-release
+
+     
+
+        Confirm the customer has the correct license with the following: http://bubba2.htr.ven.veritas.com/bubba/bubba.php 
+
+                                                                                               (back to top)
+     
+    B. BACKUP QUESTIONS AND SUPPORT
+
+        What type of backup are you performing?
+          1a. Recovery point set?
+          1b. Independent?
+          1c. File/folder level)?
+        What error is seen?
+            Check the following for details:
+            \ProgramData\Symantec\Symantec System Recovery\Logs\Symantec System Recovery.log.txt and/or the Windows Application Event Log
+        What volume(s) are included in the backup?
+          3a. Is failure still seen if you backup each volume on it’s own?
+            This step may confirm if the problem is specific to a certain volume.
+        Is backup being run over the network?
+            If yes, check to see if the following helps:
+                See: https://www.veritas.com/support/en_US/article.TECH171456.
+        What is being used as the backup destination?
+            Collect hardware details of USB drive, RDX, NAS etc.
+        If backup destination is USB/RDX, are the drives being used in a rotation system?
+            If yes, collect details on how many drives are being used, how the backup is configured and when the drives are being disconnected/connected.
+            For more details on USB rotation:
+                See: https://www.veritas.com/support/en_US/article.000075463. 
+
+        For any VSS errors/failures: 
+            Collect the output of running the following command (VSSADMIN LIST WRITERS >c:\vss_writers.txt) to check which writer may be failing.
+        For a VSS failure: 
+            Check free space is enough for a snapshot. 
+            Check the following for details, see: https://www.veritas.com/support/en_US/article.TECH205081. 
+        If a certain volume is failing to backup:
+            Check PartInfo.txt & SMEDump.txt files for signs of errors/problems.
+                Found in the ‘Files’ folder of a SymHelp .sdbz file).
+        For Linux backup failures: 
+            Check if the file system is supported.
+            Check the SCL for details.
+            Run the MOUNT command in Linux to check which file systems are being used.
+
+                                                                                               (back to top)
+     
+    C. RESTORE QUESTIONS AND SUPPORT
+
+        What type of restore is being performed?
+          1a. Full system restore?
+          1b. File/folder level restore using Recovery Point Browser?
+          1c. Exchange level restores using Granular Recovery Option (GRO)?
+
+        If this is a Restore Anyware (restore to different hardware): 
+            Collect hardware details of both the source and destination machines. 
+            Confirm that the operating system being restored is supported on the destination machine (check hardware vendors website for details).
+        For full system restore (using recovery disk):
+            Check customer is following correct steps for restore
+                See: https://www.veritas.com/support/en_US/article.TECH129112.
+        If restore fails with a corruption error: 
+            Open the recovery point file using the Recovery Point Browser, then run a manual verify.
+            This step will confirm if the recovery point is corrupt or not.
+        If a restore using the recovery disk is failing:
+            Collect logs after the failure has been reproduced. 
+                See: https://www.veritas.com/support/en_US/article.TECH54540. 
+            These logs MUST be collected before the machine is restarted at the end of the restore.
+        For Exchange restore issues with GRO:
+            Check to see if the recovery points can be mounted outside of GRO.
+                See: http://www.veritas.com/docs/000070668.
+            If the mount fails, Exchange restore with GRO will not be possible. 
+            Focus on fixing the mount issue first.
+        If restoring to a different machine/disk:
+            Check if the target disk is big enough. 
+                Use the formula in the following TechNote (TN) to calculate this.
+                    See: https://www.veritas.com/support/en_US/article.TECH126288.
+        For Exchange restore with GRO: 
+            Check that the version of Outlook being used is supported. 
+            Check the Software Compatibility List (SCL).
+        For a Linux restore (full system restore):
+            Check if the customer is restoring to different hardware.
+            This is not currently supported – refer customer to Linux User Guide.
+                See: https://www.veritas.com/support/en_US/article.DOC7515.
+
+                                                                                               (back to top)
+     
+    D. (SYSTEM) RECOVERY DISK (SDR) QUESTIONS AND SUPPORT
+
+        Disks not seen by the recovery environment?
+            Run DISKPART | LIST DISK command to confirm what disks are detected by WindowsPE. 
+            If disk is not seen, run DISKPART | RESCAN command to see if this helps.
+        Hardware (disks, network card etc) not detected by the recovery environment?
+            First check the version of WindowsPE (HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\WinPE). 
+            This version can then be ‘mapped’ to the relevant version of Windows.
+                See: https://en.wikipedia.org/wiki/Windows_Preinstallation_Environment#Versions. 
+            Once this is known, load the relevant driver using the Utilities | Load a Driver option. 
+                The driver should be obtained from the hardware vendor.
+        SRD slow to bootup?
+            Check: https://www.veritas.com/support/en_US/article.TECH142471.
+        What version of Windows was the System Recovery Disk (SRD) created on?
+            Check: https://www.veritas.com/support/en_US/article.TECH225890
+          4a. What version of Windows are you attempting to restore?
+
+        If this is a Restore AnyWare (restore to different hardware), 
+            Confirm with the hardware vendor that the version of Windows being restored is supported with the hardware being used.
+        If problem creating a recovery disk (SRD):
+            Check the following log for errors:
+            \ProgramData\Symantec\Symantec System Recovery\Logs\SRDCreatorUI.log
