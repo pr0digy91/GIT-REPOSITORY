@@ -1,0 +1,174 @@
+TROUBLESHOOTING COMMONLY KNOWN ISSUES
+?
+
+A. INSTALLATION SUPPORT
+
+ 
+
+1. Confirm whether the OS is supported in Software Compatibility List.
+
+   1.1 Refer to /etc/redhat-release or /etc/SuSE-release.
+
+   1.2 Run "uname -a", and confirm the kernel version.
+
+   1.3 Confirm SCL. If necessary, refer to Red Hat release information.
+
+     VSR16 SCL: https://www.veritas.com/support/en_US/article.000114479
+
+     SSR 2013R2 SCL: https://www.veritas.com/support/en_US/article.DOC7527
+
+     SSR 2013 SCL: https://www.veritas.com/support/en_US/article.TECH201318
+
+     Red Hat Release information: https://access.redhat.com/articles/3078
+
+ 
+
+2. Investigate error messages on the screen.
+
+   2.1 Take a screenshot when the installation fails.
+
+   2.2 Find the error messages.
+
+   2.3 Search keywords in https://www.veritas.com/content/support/en_US/
+
+ 
+
+3. Investigate log files.
+
+   3.1 Refer to /var/log/symsr/InstallUninstall.log.
+
+   3.2 Find the error messages.
+
+   3.3 Search keywords in https://www.veritas.com/content/support/en_US/
+
+ 
+
+Back to top
+
+ 
+
+B. BACKUP QUESTIONS AND SUPPORT
+
+ 
+
+1. Confirm whether both <Source> and <Destination> are valid.
+
+   1.1 Ask the customer backup commands that they use.
+
+   1.2 Gather the results of the command "mount" and "lsblk".
+
+   1.3 Confirm whether both <Source> and <Destination> are valid.
+
+ 
+
+2. Investigate error messages on the screen.
+
+   2.1 Take a screenshot when backups fail.
+
+   2.2 Find the error messages.
+
+   2.3 Search keywords in https://www.veritas.com/content/support/en_US/
+
+ 
+
+3. Investigate log files.
+
+   3.1 Run the command “gatherLogs” to gather the VSR log files.
+
+   3.2 Refer to "var_log_symsr_application" and "var_log_symsr_history".
+
+   3.3 Find the error messages.
+
+   3.4 Search keywords in https://www.veritas.com/content/support/en_US
+
+ 
+
+Back to top
+
+ 
+
+C. RESTORE QUESTIONS AND SUPPORT
+
+ 
+
+1. Confirm whether the commands and options for restore are valid.
+
+  1.1 Ask the customer the commands and options that they use.
+
+   1.2 Gather the result of the command "mount".
+
+   1.3 Confirm whether commands and options are valid.
+
+ 
+
+2. Investigate error messages on the screen.
+
+   2.1 Run the command “symsr –r <recovery point file name> -d <device>” again, take a screenshot including error messages.
+
+   2.2 Find the error messages.
+
+   2.3 Search keywords in https://www.veritas.com/content/support/en_US
+
+ 
+
+3. Ask the customer whether the partitions have equal to or greater than the original partition size.
+
+ 
+
+4. Investigate log files.
+
+   4.1 Run the command “gatherLogs” to gather the VSR log files.
+
+   4.2 Refer to "var_log_symsr_application" and "var_log_symsr_history".
+
+   4.3 Find the error messages.
+
+   4.4 Search keywords in https://www.veritas.com/content/support/en_US
+
+ 
+
+Back to top
+
+ 
+
+D. (SYSTEM) RECOVERY DISK (SDR) QUESTIONS AND SUPPORT
+
+ 
+
+1. Confirm whether the commands and options are valid.
+
+   1.1 Ask the customer the commands and options that they use.
+
+   1.2 Gather the results of the command "mount" or "lsblk".
+
+   1.3 Confirm whether commands and options are valid.
+
+ 
+
+2. Investigate error messages on the screen.
+
+   2.1 Take a screenshot when createSRD fails.
+
+   2.2 Find the error messages.
+
+   2.3 Search keywords in https://www.veritas.com/content/support/en_US/
+
+ 
+
+3. Confirm whether squashfs-tools is installed on the Linux system.
+
+   3.1 Run “rpm –qa | grep squash”.
+
+   3.2 Install squashfs-tools if “squashfs-tools-….” will not be found in the result.
+
+ 
+
+4. Investigate log files.
+
+   4.1 Run the command “gatherLogs” to gather the VSR log files.
+
+   4.2 Refer to "var_log_symsr_createSRD".
+
+   4.3 Find the error messages.
+
+   4.4 Search keywords in https://www.veritas.com/content/support/en_US

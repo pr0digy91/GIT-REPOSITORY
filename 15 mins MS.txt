@@ -1,0 +1,59 @@
+  TROUBLESHOOTING COMMONLY KNOWN ISSUES
+
+    A. MANAGEMENT SOLUTION (SSR-MS) QUESTIONS AND SUPPORT
+     
+
+         Quick Tip:
+
+            If an issue is specific to SMP (ex: install of SMP failing), DO NOT refer the customer to Symantec Support. 
+            Troubleshoot the case as normal and engage help via SME/Support Forum as needed. 
+            If normal troubleshooting does not help, Symantec Support can be engaged via a formal agreement between Veritas & Symantec Support. 
+            For this to happen, the case needs to be advanced to backline.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     
+     
+    Collect logs for Management Solution:
+
+        See: https://support.symantec.com/en_US/article.HOWTO44354.html.
+
+
+        What is the problem:
+          1a. Backup?
+          1b. Restore?
+          1c. Client machines not communicating?
+          1d. User Interface (UI) problem etc? 
+        For backup problems; how many machines are affected?
+        How many SSR clients are being managed by SSR-MS?
+
+     
+
+        For any installation problem, collect and review the following logs:
+            See: https://support.symantec.com/en_US/article.HOWTO44354.html.
+        Symantec Management Platform (SMP) has it’s own compatibility matrix:
+            See: https://support.symantec.com/en_US/article.HOWTO9965.html.
+            Refer to this to confirm that versions of Windows, Structured Query Language (SQL), Internet Explorer (IE) etc are supported with the version of SMP that is being used by the customer.
+        For Client Communication issues (when client machines are not correctly updating their status to the SSR-MS server), check the following:
+            Confirm that the ‘Symantec Management Agent’ service is running on the client machine.
+            Confirm that basic communication (ping) is working between the client machine and the SSR-MS server.
+            If ALL client machines are NOT communicating, focus on the SMP server. Use the Log Viewer to troubleshoot.
+                See: https://support.symantec.com/en_US/article.HOWTO45420.html.
+            If ONLY 1 or 2 machines are not communicating, enable agent diagnostics on the clients to allow you to easily check the agent logs using the diagnostics window.
+                See: https://support.symantec.com/en_US/article.HOWTO2057.html. 
+            You may also need to collect client logs (\ProgramData\Symantec\Symantec Agent\Logs).
+        Symantec Management Platform (SMP) logs should be viewed using the Altiris Log Viewer which allows for errors/warnings to be filtered.
