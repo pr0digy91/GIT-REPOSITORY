@@ -1,0 +1,15 @@
+1.	The site must not store any customer information. I realise there is no database / storage attached to the site and it relies on the users internet browser cache. However, that cached data must exist within the Veritas network. That means if we are to proceed then the site must be on a Veritas production server / site e.g. the PFP.
+2.	The site should only be used for the first interaction. If we allow subsequent interactions it may prevent the users from using Oracle.  
+3.	Tech name is not required.
+4.	As there is no way to save the data you enter you’re relying on the browser cache not to crash. 
+5.	Link the product name to the version and service / feature pack. i.e. if you select BE 2016 then you can only select 16 FP1 or 2.
+6.	Add selection boxes for agent applications and versions and storage types (try and use data validation as much as possible by providing pick lists rather than free text)
+7.	Add comment boxes for relevant technotes (i.e. anti-virus exclusions)
+8.	Add drop down selection for relevant 15 min guide so they can select the guide they have referred to.
+9.	Remove POA and VM fields , they should be done in the case and separately from the case work template using the correct template or B&S
+10.	If TSEs perform a webex then don’t give them the option to not upload the files.
+11.	We don’t provide root cause. Re-word it to ‘Further offline Investigation’.
+12.	Capturing all this environmental information as well as error message / failing operation should prompt the TSE to update the case subject so please add a field / comment to ensure this happens.
+
+KR
+Terry 
