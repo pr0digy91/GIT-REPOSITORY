@@ -1,0 +1,12 @@
+Remote server details need to add Physical or virtual
+
+Relevant Tech note(s) found that are relevant to the problem and/or error message? change this to "Relevant Tech note(s) found using UMI link in job/install logs":
+
+
+Device(s), OS and Applications involved are confirmed supported in SCL: Yes as per compatible list
+
+Is it reproducible or does the error/failure occur randomly?: Reproducible  
+
+Webex  - List the files transferred via Webex?  
+
+( remove the upload and download files field)
